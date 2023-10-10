@@ -62,25 +62,27 @@ with st.sidebar:
     # st.subheader('Models and parameters')
     # model = st.radio("Choose a model",('llama2', 'chatgpt'))
     model = 'llama2'
-    # st.write("### Choose the number of conversation rounds to make recommendation")
-    step = st.radio("Choose the number of conversation rounds to make recommendation",('2','3','4','5'))
-    item_num = st.slider('Select the number of recommended items:', 1, 3, 1)
-    st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
     # st.write("### Choose a User")
     user_id = st.slider('Select a user ID:', 1, 6000, 1)
     if st.sidebar.button('Get user information'):
         get_user_info(user_id)
 
+    # st.write("### Choose the number of conversation rounds to make recommendation")
+    step = st.radio("Choose the number of conversation rounds to make recommendation",('2','3','4','5'))
+    item_num = st.slider('Select the number of recommended items:', 1, 3, 1)
+    st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
-def invoke_digital(text,image="https://d24aerznc266jr.cloudfront.net/material/image/7979027.jpg"):
+
+
+
+def invoke_digital(text,image="https://d3j4fy1ccpxvdd.cloudfront.net/start.jpeg"):
     now = datetime.now()
     timestamp = str(int(datetime.timestamp(now)))
     print('invoke_digital timestamp:',timestamp)
     body={
       "id": timestamp,
       "image_url": image,
-      # "image_url": "https://d24aerznc266jr.cloudfront.net/material/image/7979027.jpg",
       "text": text,
       "random_id": timestamp,
       "character": "rp_emma_female_white",
@@ -208,7 +210,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
                 print('intention:',answer)
                 top_item_ids_str,image_path_list,item_id_list = get_product_recommendation(answer,user_id=user_id,top_k=3,filter_item_id=st.session_state.recommendationItemId)
                 st.session_state.recommendationItemId.extend(item_id_list)
-                item_ads = get_item_ads(top_item_ids_str)
+                item_ads = get_item_ads(top_item_ids_str,user_id=user_id)
                 if item_ads.find('Commodity') > 0:
                     item_ads_list = item_ads.split('Commodity')
                 elif item_ads.find('Product') > 0:

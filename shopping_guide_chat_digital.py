@@ -77,26 +77,27 @@ with st.sidebar:
 
 
 def invoke_digital(text,image="https://d3j4fy1ccpxvdd.cloudfront.net/start.jpeg"):
-    now = datetime.now()
-    timestamp = str(int(datetime.timestamp(now)))
-    print('invoke_digital timestamp:',timestamp)
-    body={
-      "id": timestamp,
-      "image_url": image,
-      "text": text,
-      "random_id": timestamp,
-      "character": "rp_emma_female_white",
-      "scene": "screen",
-      "voice": "US-En-Female",
-      "action": "Talk1",
-      "user_id": "VR-demo",
-      "item_id": "item1",
-      "voice_speed": "medium",
-      "vr_module": "0001",
-      "camera": "front_stand"
-    }
-    digital_response = requests.post(digital_url,json=body)
-    print('digital_response:',digital_response)
+    pass
+    # now = datetime.now()
+    # timestamp = str(int(datetime.timestamp(now)))
+    # print('invoke_digital timestamp:',timestamp)
+    # body={
+    #   "id": timestamp,
+    #   "image_url": image,
+    #   "text": text,
+    #   "random_id": timestamp,
+    #   "character": "rp_emma_female_white",
+    #   "scene": "screen",
+    #   "voice": "US-En-Female",
+    #   "action": "Talk1",
+    #   "user_id": "VR-demo",
+    #   "item_id": "item1",
+    #   "voice_speed": "medium",
+    #   "vr_module": "0001",
+    #   "camera": "front_stand"
+    # }
+    # digital_response = requests.post(digital_url,json=body)
+    # print('digital_response:',digital_response)
 
 
 st.write("## Just For You")
